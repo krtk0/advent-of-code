@@ -7,3 +7,4 @@ gradlew.bat
 /shelf/
 /workspace.xml
 *.txt
+out
