@@ -1,6 +1,7 @@
 package year2016.day4
 
 import year2016.util.CharFrequencyComparator
+import year2016.util.fetchOccurrence
 import java.util.Collections.rotate
 
 data class Room(val name: String, val sectorId: Int, val checkSum: String)
@@ -37,15 +38,13 @@ fun prepareInput(rawInput: List<String>): List<Room> {
 }
 
 fun buildRoom(roomString: String): Room {
-    val sectorId = roomString.extractFeature("\\d+".toRegex())
-    val checkSumRaw = roomString.extractFeature("\\[[a-z]+]".toRegex())
+    val sectorId = roomString.fetchOccurrence("\\d+".toRegex())
+    val checkSumRaw = roomString.fetchOccurrence("\\[[a-z]+]".toRegex())
     val checkSum = checkSumRaw.substring(1 until checkSumRaw.length - 1)
     val name = roomString
         .substring(0..(roomString.length - checkSum.length - sectorId.length - 4))
     return Room(name, sectorId.toInt(), checkSum)
 }
-
-fun String.extractFeature(feature: Regex): String = feature.find(this)!!.value
 
 fun sumSectorIds(rooms: List<Room>): Int {
     return rooms
