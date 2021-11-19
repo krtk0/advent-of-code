@@ -1,12 +1,12 @@
 package year2016.day4
 
+import year2016.util.CharFrequencyComparator
 import java.util.Collections.rotate
 
 data class Room(val name: String, val sectorId: Int, val checkSum: String)
 
 fun Room.isReal(): Boolean {
     val checkSumTarget = this.countOccurrencesInName()
-        .sortedWith(LetterTupleComparator)
         .subList(0, 5)
         .map { it.first }
         .joinToString("")
@@ -14,13 +14,7 @@ fun Room.isReal(): Boolean {
 }
 
 fun Room.countOccurrencesInName(): List<Pair<Char, Int>> {
-    val occurrenceMap = mutableMapOf<Char, Int>()
-    for (letter in this.name) {
-        if (letter != '-') {
-            occurrenceMap[letter] = occurrenceMap.getOrDefault(letter, 0) + 1
-        }
-    }
-    return occurrenceMap.map { Pair(it.key, it.value) }
+    return CharFrequencyComparator.getCharFrequencyPairsSorted(this.name.replace("-", ""))
 }
 
 fun Room.decipherName(): String {
