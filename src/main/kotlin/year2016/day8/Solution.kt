@@ -1,6 +1,6 @@
 package year2016.day8
 
-import year2016.util.fetchOccurrence
+import util.fetchOccurrence
 import java.util.*
 
 val screen = mutableListOf(

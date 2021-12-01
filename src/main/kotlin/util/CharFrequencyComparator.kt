@@ -1,4 +1,4 @@
-package year2016.util
+package util
 
 class CharFrequencyComparator {
     companion object : Comparator<Pair<Char, Int>> {

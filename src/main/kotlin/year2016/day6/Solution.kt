@@ -1,6 +1,6 @@
 package year2016.day6
 
-import year2016.util.CharFrequencyComparator
+import util.CharFrequencyComparator
 
 fun prepareInput(rawInput: List<String>): List<String> {
     val vertical = mutableListOf<String>()

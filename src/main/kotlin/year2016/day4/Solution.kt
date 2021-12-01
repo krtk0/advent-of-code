@@ -1,7 +1,7 @@
 package year2016.day4
 
-import year2016.util.CharFrequencyComparator
-import year2016.util.fetchOccurrence
+import util.CharFrequencyComparator
+import util.fetchOccurrence
 import java.util.Collections.rotate
 
 data class Room(val name: String, val sectorId: Int, val checkSum: String)

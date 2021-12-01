@@ -1,4 +1,4 @@
-package year2016.util
+package util
 
 fun String.fetchOccurrence(feature: Regex): String = feature.find(this)!!.value
 

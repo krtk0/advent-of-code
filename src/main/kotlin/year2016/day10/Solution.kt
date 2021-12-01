@@ -2,7 +2,7 @@ package year2016.day10
 
 import year2016.day10.BalanceBotsFactory.outputs
 import year2016.day10.BalanceBotsFactory.valueComparisonToRobot
-import year2016.util.fetchNumber
+import util.fetchNumber
 
 enum class Destination {
     ROBOT,

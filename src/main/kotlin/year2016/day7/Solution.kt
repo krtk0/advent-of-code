@@ -1,6 +1,6 @@
 package year2016.day7
 
-import year2016.util.fetchOccurrences
+import util.fetchOccurrences
 
 fun String.getIpParts(regex: Regex): List<String> {
     return this.fetchOccurrences(regex).map { it.replace("[", "").replace("]", "") }
