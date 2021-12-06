@@ -1,5 +1,6 @@
 package year2016.day1
 
+import util.getPathToNextOrthogonal
 import java.util.Collections.rotate
 import kotlin.math.abs
 
@@ -14,28 +15,6 @@ fun Pair<Int, Int>.positionAfterMove(change: Pair<Int, Int>, distance: Int): Pai
 
 fun Pair<Int, Int>.calculateManhattanDistance(): Int {
     return abs(this.first) + abs(this.second)
-}
-
-fun getRange(current: Int, next: Int): IntProgression {
-    return if (current < next) {
-        (current + 1)..next
-    } else {
-        (current - 1) downTo next
-    }
-}
-
-fun Pair<Int, Int>.getPathToNext(next: Pair<Int, Int>): List<Pair<Int, Int>> {
-    val result = mutableListOf<Pair<Int, Int>>()
-    if (this.first == next.first) {
-        for (y in getRange(this.second, next.second)) {
-            result.add(Pair(this.first, y))
-        }
-    } else {
-        for (x in getRange(this.first, next.first)) {
-            result.add(Pair(x, this.second))
-        }
-    }
-    return result
 }
 
 fun chooseDirection(leftOrRight: String): String {
@@ -64,7 +43,7 @@ fun calculateFirstDoubleVisitPosition(): Pair<Int, Int> {
         val direction = chooseDirection(leftOrRight)
         val positionChange = positionChanges[direction]!!
         val nextPosition = currentPosition.positionAfterMove(positionChange, distance)
-        val pathToNextPosition = currentPosition.getPathToNext(nextPosition)
+        val pathToNextPosition = currentPosition.getPathToNextOrthogonal(nextPosition)
         for (pathPoint in pathToNextPosition) {
             if (visited.getOrDefault(pathPoint, false)) {
                 currentPosition = pathPoint
