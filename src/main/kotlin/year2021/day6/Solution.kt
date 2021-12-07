@@ -32,7 +32,6 @@ fun growLanternfishPopulation(population: List<Int>, dayAmount: Int): Long {
     repeat(dayAmount) {
         fishPerCycleDay.addLast(fishPerCycleDay.removeFirst())
         fishPerCycleDay[6] += fishPerCycleDay[8]
-        println(fishPerCycleDay)
     }
     return fishPerCycleDay.sum()
 }
