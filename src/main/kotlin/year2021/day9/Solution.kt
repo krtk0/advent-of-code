@@ -29,19 +29,19 @@ fun part2(input: List<String>): Int {
     for (j in 0 until 100) {
         for (i in 0 until 100) {
             if (isPointLow(i, j, input)) {
-                val stack = mutableListOf(Pair(i, j))
+                val queue = mutableListOf(Pair(i, j))
                 val visited = mutableMapOf(Pair(i, j) to true)
                 var basinSize = 1
-                while (stack.isNotEmpty()) {
+                while (queue.isNotEmpty()) {
                     var right = 1
-                    val point = stack.removeFirst()
+                    val point = queue.removeFirst()
                     while ((point.first + right < 100) && (Pair(
                             point.first + right,
                             point.second
                         ) !in visited) && ((input[point.second][point.first + right].code - 48) != 9)
                     ) {
                         basinSize++
-                        stack.add(Pair(point.first + right, point.second))
+                        queue.add(Pair(point.first + right, point.second))
                         visited[Pair(point.first + right, point.second)] = true
                         right++
                     }
@@ -52,7 +52,7 @@ fun part2(input: List<String>): Int {
                         ) !in visited) && ((input[point.second][point.first - left].code - 48) != 9)
                     ) {
                         basinSize++
-                        stack.add(Pair(point.first - left, point.second))
+                        queue.add(Pair(point.first - left, point.second))
                         visited[Pair(point.first - left, point.second)] = true
                         left++
                     }
@@ -63,7 +63,7 @@ fun part2(input: List<String>): Int {
                         ) !in visited) && ((input[point.second - up][point.first].code - 48) != 9)
                     ) {
                         basinSize++
-                        stack.add(Pair(point.first, point.second - up))
+                        queue.add(Pair(point.first, point.second - up))
                         visited[Pair(point.first, point.second - up)] = true
                         up++
                     }
@@ -74,7 +74,7 @@ fun part2(input: List<String>): Int {
                         ) !in visited) && ((input[point.second + down][point.first].code - 48) != 9)
                     ) {
                         basinSize++
-                        stack.add(Pair(point.first, point.second + down))
+                        queue.add(Pair(point.first, point.second + down))
                         visited[Pair(point.first, point.second + down)] = true
                         down++
                     }
