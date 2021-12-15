@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.5.10"
     application
+    id("idea")
 }
 
 group = "me.ed"
@@ -14,6 +15,12 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+}
+
+idea {
+    module {
+        isDownloadJavadoc = true
+    }
 }
 
 tasks.test {
